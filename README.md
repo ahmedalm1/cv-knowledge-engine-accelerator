@@ -57,9 +57,10 @@ COMING SOON
 
 ### Step 3: Create the Index
 
-### Step 4a: Create the Custom Skill
+### Step 4: Create the Skillset 
+#### Step 4a: Custom Skill
 
-### Step 4b: Create the Skillset 
+#### Step 4b: Built-in Skills
 
 ### Step 5: Create the Indexer
 
