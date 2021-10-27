@@ -6,6 +6,9 @@ The CV Knowledge Engine solution accelerator aims to provides a quick way of cre
 ### Business Use Case 
 The process of screening and searching through CV documents submitted by job seekers is a long and costly process, where the recruiters teams usually have to go through each submitted CV manually, to find the best candidates suited for the job opening. This accelerator will help extract all the essential information from CVs and resumes and simplify the process of searching and filtering through applicants, which will significantly reduce costs and time to isights. 
 
+### Demo Website
+You can demo the accelerator by visiting this website [CV Knowledge Engine](https://cvknowledgeengine.azurewebsites.net/)
+
 ### Resources and Architecture 
 - Storage Account 
 - Cognitive Search 
