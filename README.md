@@ -18,7 +18,7 @@ You can demo the accelerator by visiting this website [CV Knowledge Engine](http
 ![Architecture](https://user-images.githubusercontent.com/88718044/139073235-eb6b8b2c-3577-405e-b974-82bc951676dc.png)
 
 ### Sample Documents 
-The sample documents used in this accelerator to create the demo were 223 dummy CV documents, acquired from [Resume Krafts Website](https://resumekraft.com/resume-examples/).
+The sample documents used in this accelerator to create the demo were 223 dummy CV documents, acquired from [Resume Krafts](https://resumekraft.com/resume-examples/) website.
 
 ### Extracted Information 
 #### PII Information
