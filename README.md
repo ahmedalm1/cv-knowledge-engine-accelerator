@@ -58,12 +58,12 @@ COMING SOON
 
 ### Step 2: Create the Datasource
 
-### Step 3: Create the Index
+### Step 3: Create the Skillset 
+#### Step 3a: Custom Skill
 
-### Step 4: Create the Skillset 
-#### Step 4a: Custom Skill
+#### Step 3b: Built-in Skills
 
-#### Step 4b: Built-in Skills
+### Step 4: Create the Index
 
 ### Step 5: Create the Indexer
 
