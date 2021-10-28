@@ -51,6 +51,7 @@ COMING SOON
 ### Prerequisites
 - Azure Subscription 
 - Visual Studio 2019 or later
+- VS Code with Azure Functions extension
 - Postman
 - Sample CV documents
 
