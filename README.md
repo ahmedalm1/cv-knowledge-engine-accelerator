@@ -31,7 +31,7 @@ The sample documents used in this accelerator to create the demo were 223 dummy 
 - Years of experience
 - Qualifications
 - Languages
-- Past organization 
+- Organizations
 - Skills 
 #### Other Insights
 - Key phrases
