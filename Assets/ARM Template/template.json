@@ -1,0 +1,250 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourcePrefix": {
+            "type": "String",
+            "metadata": {
+                "description": "2-5 characters prefix."
+            }
+        },
+        "storageAccountType": {
+            "defaultValue": "Standard_LRS",
+            "allowedValues": [
+                "Standard_LRS",
+                "Standard_GRS",
+                "Standard_ZRS",
+                "Premium_LRS"
+            ],
+            "type": "String",
+            "metadata": {
+                "description": "Storage Account type"
+            }
+        },
+        "hostingPlanSku": {
+            "defaultValue": "F1",
+            "allowedValues": [
+                "F1",
+                "D1",
+                "B1",
+                "B2",
+                "B3",
+                "S1",
+                "S2",
+                "S3",
+                "P1",
+                "P2",
+                "P3",
+                "P4"
+            ],
+            "type": "String",
+            "metadata": {
+                "description": "App Service Plan tier"
+            }
+        },
+        "searchServiceSku": {
+            "defaultValue": "basic",
+            "allowedValues": [
+                "free",
+                "basic",
+                "standard",
+                "standard2",
+                "standard3"
+            ],
+            "type": "String",
+            "metadata": {
+                "description": "Search Service tier"
+            }
+        },
+        "location": {
+            "defaultValue": "UAE North",
+            "allowedValues": [
+                "UAE North",
+                "East Asia",
+                "Southeast Asia",
+                "Australia East",
+                "Brazil South",
+                "Canada Central",
+                "North Europe",
+                "West Europe",
+                "Central India",
+                "UK South",
+                "East US",
+                "East US 2",
+                "Central US",
+                "North Central US",
+                "South Central US",
+                "West Central US",
+                "West US",
+                "West US 2",
+                "Japan East",
+                "Japan West",
+                "Korea Central",
+                "France Central"
+            ],
+            "type": "String",
+            "metadata": {
+                "description": "Location of deployed resources."
+            }
+        }
+    },
+    "variables": {
+        "hostingPlanName": "[concat(parameters('resourcePrefix'), '-plan')]",
+        "storageAccountName": "[concat(parameters('resourcePrefix'), 'storage')]",
+        "websiteName": "[concat(parameters('resourcePrefix'), '-site')]",
+        "searchServiceName": "[concat(parameters('resourcePrefix'), '-search-service')]",
+        "cognitiveServicesAccountName": "[concat(parameters('resourcePrefix'), '-cognitive-services')]",
+        "functionAppName": "[concat(parameters('resourcePrefix'), '-function-app')]",
+        "storageAccountId": "[concat(parameters('resourcePrefix'))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2016-09-01",
+            "name": "[variables('hostingPlanName')]",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "[parameters('hostingPlanSku')]"
+            },
+            "properties": {
+                "name": "[variables('hostingPlanName')]"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2018-07-01",
+            "name": "[variables('storageAccountName')]",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "[parameters('storageAccountType')]",
+                "tier": "Standard"
+            },
+            "kind": "StorageV2"
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2016-08-01",
+            "name": "[variables('websiteName')]",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+            ],
+            "properties": {
+                "serverFarmId": "[variables('hostingPlanName')]"
+            }
+        },
+        {
+            "type": "Microsoft.Search/searchServices",
+            "apiVersion": "2015-08-19",
+            "name": "[variables('searchServiceName')]",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "[parameters('searchServiceSku')]"
+            }
+        },
+        {
+            "type": "Microsoft.CognitiveServices/accounts",
+            "apiVersion": "2017-04-18",
+            "name": "[variables('cognitiveServicesAccountName')]",
+            "location": "[toLower(replace(parameters('location'),' ', ''))]",
+            "sku": {
+                "name": "S0"
+            },
+            "kind": "CognitiveServices",
+            "properties": {}
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2016-03-01",
+            "name": "[concat(variables('functionAppName'), '-1')]",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
+            ],
+            "kind": "functionapp",
+            "properties": {
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "AzureWebJobsStorage",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1, ';')]"
+                        },
+                        {
+                            "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1, ';')]"
+                        },
+                        {
+                            "name": "WEBSITE_CONTENTSHARE",
+                            "value": "[toLower(concat(variables('functionAppName'), '-1'))]"
+                        },
+                        {
+                            "name": "FUNCTIONS_WORKER_RUNTIME",
+                            "value": "node"
+                        },
+                        {
+                            "name": "WEBSITE_NODE_DEFAULT_VERSION",
+                            "value": "10.14.1"
+                        },
+                        {
+                            "name": "FUNCTIONS_EXTENSION_VERSION",
+                            "value": "~2"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2016-03-01",
+            "name": "[concat(variables('functionAppName'), '-2')]",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
+            ],
+            "kind": "functionapp",
+            "properties": {
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "AzureWebJobsStorage",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1, ';')]"
+                        },
+                        {
+                            "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1, ';')]"
+                        },
+                        {
+                            "name": "WEBSITE_CONTENTSHARE",
+                            "value": "[toLower(concat(variables('functionAppName'), '-2'))]"
+                        },
+                        {
+                            "name": "FUNCTIONS_WORKER_RUNTIME",
+                            "value": "node"
+                        },
+                        {
+                            "name": "WEBSITE_NODE_DEFAULT_VERSION",
+                            "value": "10.14.1"
+                        },
+                        {
+                            "name": "FUNCTIONS_EXTENSION_VERSION",
+                            "value": "~2"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2018-02-01",
+            "name": "pid-205d0e47-324f-5b9e-8dde-f9fc4a92c091",
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "resources": []
+                }
+            }
+        }
+    ]
+}
