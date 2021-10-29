@@ -63,11 +63,9 @@ In order to deploy the accelerator, clone or download this repository, and make 
 - Postman 
 
 ### Step 0: Deploy the resources
-TO-DO: Create a one-click deploy button for the resources 
-
 Using the provided ARM template, create all the required Azure resources by clicking on this button: 
 
-![Deploy to Azure](https://aka.ms/deploytoazurebutton)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAhmedAlmu%2Fcv-knowledge-engine-accelerator%2Fmain%2FAssets%2FARM%2520Template%2Ftemplate.json)
 
 ### Step 1: Setup the Environemnt 
 After deploying the resources successfully, navigate to the newly created Storage Account in Azure, and upload the sample documents in a new blob container.
