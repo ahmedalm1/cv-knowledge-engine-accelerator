@@ -98,7 +98,7 @@ This will create an Index in the Search Service for the information to be extrac
 ### Step 5: Create the Indexer
 In Postman, navigate to Create Indexer and run the request. 
 
-This will create a Datasource in your Search Service from the container that has the sample documents.
+This will create an Indexer in the Search Service that will exctract the defined information from the CVs.
 
 ### Step 6: Create the Web App Interface 
 
@@ -106,7 +106,7 @@ This will create a Datasource in your Search Service from the container that has
 COMING SOON
 
 ## References 
-This accelerator leverages the [Knowledge Mining Solution Accelerator](https://github.com/Azure-Samples/azure-search-knowledge-mining).
+This accelerator was inspired by the [Knowledge Mining Solution Accelerator](https://github.com/Azure-Samples/azure-search-knowledge-mining).
 
 ## License
-Please refer to [LICENSE](https://github.com/AhmedAlmu/cv-knowledge-engine-accelerator/blob/main/LICENSE) for all licensing information.
+For all licensing information refer to [LICENSE](https://github.com/AhmedAlmu/cv-knowledge-engine-accelerator/blob/main/LICENSE).
