@@ -15,12 +15,15 @@ You can demo the accelerator by visiting this website [CV Knowledge Engine](http
 - Cognitive Services
 - Azure Function 
 - App Service
+
 ![Architecture](https://user-images.githubusercontent.com/88718044/139073235-eb6b8b2c-3577-405e-b974-82bc951676dc.png)
 
 ### Sample Documents 
 The sample documents used in this accelerator to create the demo were 223 dummy CV documents, acquired from [Resume Krafts](https://resumekraft.com/resume-examples/) website.
 
-### Extracted Information 
+### Extracted Information
+The information and isights extracted from the CV documents can be grouped into three categories: 
+
 #### PII Information
 - Name 
 - Email
@@ -37,6 +40,8 @@ The sample documents used in this accelerator to create the demo were 223 dummy 
 - Key phrases
 
 ### Web App Interface
+The first interface created to display the extracted insights is a website interface, that can be used to search and filter through the CV documents.
+
 #### Home Page
 ![Home Page](https://user-images.githubusercontent.com/88718044/139071306-6595000e-a33c-4dca-85eb-ed6c475d66cf.jpeg)
 
@@ -47,17 +52,40 @@ The sample documents used in this accelerator to create the demo were 223 dummy 
 COMING SOON
 
 ## Deployemnt Process
+Deploying the accelerator can be done in seven simple steps, that cover every aspect from deploying the resources, creating the search service elements, and conecting to the web interface. 
 
 ### Prerequisites
+In order to deploy the accelerator, clone or download this repository, and make sure the following requirements are met:
 - Azure Subscription 
 - Visual Studio 2019 or later
 - VS Code with Azure Functions extension
-- Postman
 - Sample CV documents
+- Postman 
 
-### Step 1: Deploy the resources
+### Step 0: Deploy the resources
+TO-DO: Create a one-click deploy button for the resources 
+
+Using the provided ARM template, create all the required Azure resources by clicking on this button: 
+
+![Deploy to Azure](https://aka.ms/deploytoazurebutton)
+
+### Step 1: Setup the Environemnt 
+After deploying the resources successfully, navigate to the newly created Storage Account in Azure, and upload the sample documents in a new blob container.
+
+The sample documents can be found in [Assets/Sample Documents](https://github.com/AhmedAlmu/cv-knowledge-engine-accelerator/tree/main/Assets/Sample%20Documents) folder. 
+
+Next, navigate to the folder [Assets/Postman Script](https://github.com/AhmedAlmu/cv-knowledge-engine-accelerator/tree/main/Assets/Postman%20Script) to find the Postman collection that will be used to create the Search Service elements. 
+
+In Postman, import the collection and fill in the global variables with the proper values. To do that, click on the collection's name and navigate to the "Variables" tab. Modify the values in the "CURRENT VALUE" column according to the following table: 
+
+| CURRENT VALUE | Value to replace |
+| ------ | ------ |
+| TO-DO | TO-DO |
 
 ### Step 2: Create the Datasource
+In Postman, navigate to Create Datasource and run the request. 
+
+This will create a Datasource in the Search Service from the container that has the sample documents. 
 
 ### Step 3: Create the Skillset 
 #### Step 3a: Custom Skill
@@ -65,8 +93,14 @@ COMING SOON
 #### Step 3b: Built-in Skills
 
 ### Step 4: Create the Index
+In Postman, navigate to Create Index and run the request. 
+
+This will create an Index in the Search Service for the information to be extracted from the CVs as mentioned earlier.
 
 ### Step 5: Create the Indexer
+In Postman, navigate to Create Indexer and run the request. 
+
+This will create a Datasource in your Search Service from the container that has the sample documents.
 
 ### Step 6: Create the Web App Interface 
 
