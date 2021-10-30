@@ -119,9 +119,15 @@ In [Assets/Website Template](https://github.com/AhmedAlmu/cv-knowledge-engine-ac
 
 Navigate to the "appsettings.json" file, and change the values according to the following table:
 
-| CURRENT VALUE | Value to replace |
+| Placeholder Value | Value to replace |
 | ------ | ------ |
-| TO-DO | TO-DO |
+| <SEARCH_SERVICE_NAME> | Name of Cognitive Search Service |
+| <SEARCH_SERVICE_KEY> | Primary Key of Cognitive Search Service |
+| <INDEX_NAME> | Index Name in Search Service |
+| <INDEXER_NAME> | Indexer Name in Search Service |
+| <STORAGE_ACCOUNT_NAME> | Storage Account Name that stores the documents |
+| <STORAGE_ACCOUNT_KEY> | Storage Account Key |
+| <CONTAINER_NAME> | Container Name in Storage Account that stores the documents |
 
 You can test the website locally by running the solution in Visual Studio, or publish the website to Azure by following the instructions found here: [Quickstart: Publish an ASP.NET web app](https://docs.microsoft.com/en-US/visualstudio/deployment/quickstart-deploy-aspnet-web-app?view=vs-2019&tabs=azure).
 
