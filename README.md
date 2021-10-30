@@ -98,9 +98,11 @@ To deploy the function, you can follow the instructions provided in here: [Devel
 After deploying both custom skill functions, we can procceed to create the Skillset. 
 
 #### Step 3b: Built-in Skills
-In Postman, navigate to Create Skillset and run the request. 
+In Postman, navigate to Create Skillset request. 
 
-This will create a Skillstet that identifies all the information to be extracted from the CVs.
+For the "Custom Entity Lookup" skills, we need to provide the URL for the CSV lookup tables. You can upload the two files in [Assets/Lookup Tables](https://github.com/AhmedAlmu/cv-knowledge-engine-accelerator/tree/main/Assets/Lookup%20Tables) to the Storage Account, and get their SAS URL to be used in the skill definition. After both URLs are provided, run the request.  
+
+This will create a Skillstet in the Search Service that identifies all the information to be extracted from the CVs.
 
 ### Step 4: Create the Index
 In Postman, navigate to Create Index and run the request. 
