@@ -87,8 +87,20 @@ This will create a Datasource in the Search Service from the container that has 
 
 ### Step 3: Create the Skillset 
 #### Step 3a: Custom Skill
+In VS Code, create an HTTP Trigger Azure Function in Python, and replace the code in the "init" file with the code provided in [Assets/Function Script](https://github.com/AhmedAlmu/cv-knowledge-engine-accelerator/tree/main/Assets/Function%20Script). 
+
+This process should be done twice to create two functions, one for Text Extraction and the other for Years of Experience. 
+
+In Text Extraction, make sure to add the values for the Cognitive Services Key and Endpoint in the script, and add "requests" in the requirments file.
+
+To deploy the function, you can follow the instructions provided in here: [Develop Azure Functions by using Visual Studio Code](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=python).
+
+After deploying both custom skill functions, we can procceed to create the Skillset. 
 
 #### Step 3b: Built-in Skills
+In Postman, navigate to Create Skillset and run the request. 
+
+This will create a Skillstet that identifies all the information to be extracted from the CVs.
 
 ### Step 4: Create the Index
 In Postman, navigate to Create Index and run the request. 
@@ -100,7 +112,16 @@ In Postman, navigate to Create Indexer and run the request.
 
 This will create an Indexer in the Search Service that will exctract the defined information from the CVs.
 
-### Step 6: Create the Web App Interface 
+### Step 6: Create the Web App Interface
+In [Assets/Website Template](https://github.com/AhmedAlmu/cv-knowledge-engine-accelerator/tree/main/Assets/Website%20Template), open the solution file "CognitiveSearch.Template.sln" in Visual Studio. 
+
+Navigate to the "appsettings.json" file, and change the values according to the following table:
+
+| CURRENT VALUE | Value to replace |
+| ------ | ------ |
+| TO-DO | TO-DO |
+
+You can test the website locally by running the solution in Visual Studio, or publish the website to Azure by following the instructions found here: [Quickstart: Publish an ASP.NET web app](https://docs.microsoft.com/en-US/visualstudio/deployment/quickstart-deploy-aspnet-web-app?view=vs-2019&tabs=azure).
 
 ### Step 7: Create the PowerBI Dashboard
 COMING SOON
