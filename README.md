@@ -78,7 +78,21 @@ In Postman, import the collection and fill in the global variables with the prop
 
 | CURRENT VALUE | Value to replace |
 | ------ | ------ |
-| TO-DO | TO-DO |
+| <SEARCH_SERVICE_NAME> | TO-DO |
+| <SEARCH_SERVICE_ADMIN_KEY> | TO-DO |
+| <COGNATIVE_SERVICE_KEY> | TO-DO |
+| <STORAGE_ACCOUNT_NAME> | TO-DO |
+| <STORAGE_ACCOUNT_CONTAINER_NAME> | TO-DO |
+| <STORAGE_CONTAINER_FOLDER_NAME> | TO-DO |
+| <STORAGE_ACCOUNT_CONNECTION_STRING> | TO-DO |
+| <CUSTOM_SKILL_URL_ONE> | TO-DO |
+| <CUSTOM_SKILL_URL_TWO> | TO-DO |
+| <LOOKUP_TABLE_URL_ONE> | TO-DO |
+| <LOOKUP_TABLE_URL_TWO> | TO-DO |
+| <DATASOURCE_NAME> | TO-DO |
+| <INDEX_NAME> | TO-DO |
+| <SKILLSET_NAME> | TO-DO |
+| <INDEXER_NAME> | TO-DO |
 
 ### Step 2: Create the Datasource
 In Postman, navigate to Create Datasource and run the request. 
@@ -122,7 +136,7 @@ Navigate to the "appsettings.json" file, and change the values according to the 
 | Placeholder Value | Value to replace |
 | ------ | ------ |
 | <SEARCH_SERVICE_NAME> | Name of Cognitive Search Service |
-| <SEARCH_SERVICE_KEY> | Primary Key of Cognitive Search Service |
+| <SEARCH_SERVICE_KEY> | Admin Key of Cognitive Search Service |
 | <INDEX_NAME> | Index Name in Search Service |
 | <INDEXER_NAME> | Indexer Name in Search Service |
 | <STORAGE_ACCOUNT_NAME> | Storage Account Name that stores the documents |
