@@ -91,7 +91,7 @@
 			"response": []
 		},
 		{
-			"name": "Create the Skillset",
+			"name": "Create Skillset",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -135,7 +135,7 @@
 			"response": []
 		},
 		{
-			"name": "Create the Indexer",
+			"name": "Create Indexer",
 			"request": {
 				"method": "PUT",
 				"header": [
