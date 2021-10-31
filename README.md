@@ -78,21 +78,21 @@ In Postman, import the collection and fill in the global variables with the prop
 
 | CURRENT VALUE | Value to replace |
 | ------ | ------ |
-| <SEARCH_SERVICE_NAME> | TO-DO |
-| <SEARCH_SERVICE_ADMIN_KEY> | TO-DO |
-| <COGNATIVE_SERVICE_KEY> | TO-DO |
-| <STORAGE_ACCOUNT_NAME> | TO-DO |
-| <STORAGE_ACCOUNT_CONTAINER_NAME> | TO-DO |
-| <STORAGE_CONTAINER_FOLDER_NAME> | TO-DO |
-| <STORAGE_ACCOUNT_CONNECTION_STRING> | TO-DO |
-| <CUSTOM_SKILL_URL_ONE> | TO-DO |
-| <CUSTOM_SKILL_URL_TWO> | TO-DO |
-| <LOOKUP_TABLE_URL_ONE> | TO-DO |
-| <LOOKUP_TABLE_URL_TWO> | TO-DO |
-| <DATASOURCE_NAME> | TO-DO |
-| <INDEX_NAME> | TO-DO |
-| <SKILLSET_NAME> | TO-DO |
-| <INDEXER_NAME> | TO-DO |
+| <SEARCH_SERVICE_NAME> | Name of Search Service |
+| <SEARCH_SERVICE_ADMIN_KEY> | Admin Key of Search Service |
+| <COGNATIVE_SERVICE_KEY> | Key of Cognitive Services |
+| <STORAGE_ACCOUNT_NAME> | Name of Storage Account |
+| <STORAGE_ACCOUNT_CONTAINER_NAME> | Name of Storage Container |
+| <STORAGE_CONTAINER_FOLDER_NAME> | Name of Storage Folder, only if used, otherwise replace with empty space |
+| <STORAGE_ACCOUNT_CONNECTION_STRING> | Connection String of Storage Account  |
+| <CUSTOM_SKILL_URL_ONE> | Azure Function URL of Text Extraction Skill |
+| <CUSTOM_SKILL_URL_TWO> | Azure Function URL of Years of Experience Skill |
+| <LOOKUP_TABLE_URL_ONE> | Lookup table URL of Qualifications |
+| <LOOKUP_TABLE_URL_TWO> | Lookup table URL of Languages |
+| <DATASOURCE_NAME> | Name of Datasource |
+| <INDEX_NAME> | Name of Index |
+| <SKILLSET_NAME> | Name of Skillset |
+| <INDEXER_NAME> | Name of Indexer |
 
 ### Step 2: Create the Datasource
 In Postman, navigate to Create Datasource and run the request. 
