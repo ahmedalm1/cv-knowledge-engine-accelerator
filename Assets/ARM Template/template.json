@@ -161,7 +161,7 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
             ],
-            "kind": "functionapp",
+            "kind": "functionapp,linux",
             "properties": {
                 "siteConfig": {
                     "appSettings": [
@@ -201,7 +201,7 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
             ],
-            "kind": "functionapp",
+            "kind": "functionapp,linux",
             "properties": {
                 "siteConfig": {
                     "appSettings": [
