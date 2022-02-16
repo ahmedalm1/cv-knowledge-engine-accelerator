@@ -444,56 +444,6 @@
         {
             "type": "Microsoft.Web/sites",
             "apiVersion": "2021-02-01",
-            "name": "[variables('sites_cvkmdemotempfuncapp1_name')]",
-            "location": "UAE North",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc2_name'))]"
-            ],
-            "kind": "functionapp,linux",
-            "properties": {
-                "enabled": true,
-                "hostNameSslStates": [
-                    {
-                        "name": "[concat(variables('sites_cvkmdemotempfuncapp1_name'), '.azurewebsites.net')]",
-                        "sslState": "Disabled",
-                        "hostType": "Standard"
-                    },
-                    {
-                        "name": "[concat(variables('sites_cvkmdemotempfuncapp1_name'), '.scm.azurewebsites.net')]",
-                        "sslState": "Disabled",
-                        "hostType": "Repository"
-                    }
-                ],
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc2_name'))]",
-                "reserved": true,
-                "isXenon": false,
-                "hyperV": false,
-                "siteConfig": {
-                    "numberOfWorkers": 1,
-                    "linuxFxVersion": "Python|3.9",
-                    "acrUseManagedIdentityCreds": false,
-                    "alwaysOn": false,
-                    "http20Enabled": false,
-                    "functionAppScaleLimit": 200,
-                    "minimumElasticInstanceCount": 0
-                },
-                "scmSiteAlsoStopped": false,
-                "clientAffinityEnabled": false,
-                "clientCertEnabled": false,
-                "clientCertMode": "Required",
-                "hostNamesDisabled": false,
-                "customDomainVerificationId": "4D973B1A4FFF6D14A2603155D12163CBC069DCFFAF174946B100C28ACD870844",
-                "containerSize": 1536,
-                "dailyMemoryTimeQuota": 0,
-                "httpsOnly": false,
-                "redundancyMode": "None",
-                "storageAccountRequired": false,
-                "keyVaultReferenceIdentity": "SystemAssigned"
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites",
-            "apiVersion": "2021-02-01",
             "name": "[variables('sites_cvkmdemotempfuncapp2_name')]",
             "location": "UAE North",
             "dependsOn": [
@@ -515,56 +465,6 @@
                     }
                 ],
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc1_name'))]",
-                "reserved": true,
-                "isXenon": false,
-                "hyperV": false,
-                "siteConfig": {
-                    "numberOfWorkers": 1,
-                    "linuxFxVersion": "Python|3.9",
-                    "acrUseManagedIdentityCreds": false,
-                    "alwaysOn": false,
-                    "http20Enabled": false,
-                    "functionAppScaleLimit": 200,
-                    "minimumElasticInstanceCount": 0
-                },
-                "scmSiteAlsoStopped": false,
-                "clientAffinityEnabled": false,
-                "clientCertEnabled": false,
-                "clientCertMode": "Required",
-                "hostNamesDisabled": false,
-                "customDomainVerificationId": "4D973B1A4FFF6D14A2603155D12163CBC069DCFFAF174946B100C28ACD870844",
-                "containerSize": 1536,
-                "dailyMemoryTimeQuota": 0,
-                "httpsOnly": false,
-                "redundancyMode": "None",
-                "storageAccountRequired": false,
-                "keyVaultReferenceIdentity": "SystemAssigned"
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites",
-            "apiVersion": "2021-02-01",
-            "name": "[variables('sites_cvkmdemotempfuncapp2_name')]",
-            "location": "UAE North",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc2_name'))]"
-            ],
-            "kind": "functionapp,linux",
-            "properties": {
-                "enabled": true,
-                "hostNameSslStates": [
-                    {
-                        "name": "[concat(variables('sites_cvkmdemotempfuncapp2_name'), '.azurewebsites.net')]",
-                        "sslState": "Disabled",
-                        "hostType": "Standard"
-                    },
-                    {
-                        "name": "[concat(variables('sites_cvkmdemotempfuncapp2_name'), '.scm.azurewebsites.net')]",
-                        "sslState": "Disabled",
-                        "hostType": "Repository"
-                    }
-                ],
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc2_name'))]",
                 "reserved": true,
                 "isXenon": false,
                 "hyperV": false,
