@@ -10,7 +10,7 @@
                 "description": "2-8 characters prefix."
             }
         },
-        "storageAccountType": {
+        "storageAccountType": { 
             "defaultValue": "Standard_LRS",
             "allowedValues": [
                 "Standard_LRS",
@@ -44,7 +44,7 @@
                 "description": "App Service Plan tier"
             }
         },
-        "searchServiceSku": {
+        "searchServiceSku": { 
             "defaultValue": "basic",
             "allowedValues": [
                 "free",
@@ -126,7 +126,7 @@
             "name": "[variables('searchServices_cvkmdemotempcogserch_name')]",
             "location": "[parameters('location')]",
             "sku": {
-                "name": "basic"
+                "name": "[parameters('searchServiceSku')]"
             },
             "properties": {
                 "replicaCount": 1,
@@ -154,8 +154,7 @@
             "name": "[variables('storageAccounts_cvkmdemotempstr_name')]",
             "location": "[parameters('location')]",
             "sku": {
-                "name": "Standard_LRS",
-                "tier": "Standard"
+                "name": "[parameters('storageAccountType')]"
             },
             "kind": "StorageV2",
             "properties": {
@@ -193,11 +192,7 @@
             "name": "[variables('serverfarms_cvkmdemotempappservplanfunc_name')]",
             "location": "[parameters('location')]",
             "sku": {
-                "name": "Y1",
-                "tier": "Dynamic",
-                "size": "Y1",
-                "family": "Y",
-                "capacity": 0
+                "name": "[parameters('hostingPlanSku')]"
             },
             "kind": "functionapp",
             "properties": {
@@ -219,11 +214,7 @@
             "name": "[variables('serverfarms_cvkmdemotempappservplan_name')]",
             "location": "[parameters('location')]",
             "sku": {
-                "name": "B1",
-                "tier": "Basic",
-                "size": "B1",
-                "family": "B",
-                "capacity": 1
+                "name": "[parameters('hostingPlanSku')]"
             },
             "kind": "app",
             "properties": {
@@ -247,7 +238,7 @@
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccounts_cvkmdemotempstr_name'))]"
             ],
             "sku": {
-                "name": "Standard_LRS",
+                "name": "[parameters('storageAccountType')]",
                 "tier": "Standard"
             },
             "properties": {
@@ -279,7 +270,7 @@
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccounts_cvkmdemotempstr_name'))]"
             ],
             "sku": {
-                "name": "Standard_LRS",
+                "name": "[parameters('storageAccountType')]",
                 "tier": "Standard"
             },
             "properties": {
