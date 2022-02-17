@@ -98,15 +98,14 @@
         "accounts_cvkmdemotempcogserv_name": "[concat(parameters('resourcePrefix'), '-cognitive-services')]",
         "sites_cvkmdemotempfuncapp1_name": "[concat(parameters('resourcePrefix'), '-function-1')]",
         "sites_cvkmdemotempfuncapp2_name": "[concat(parameters('resourcePrefix'), '-function-2')]",
-        "serverfarms_cvkmdemotempappservplanfunc1_name": "[concat(parameters('resourcePrefix'), '-function-plan-1')]",
-        "serverfarms_cvkmdemotempappservplanfunc2_name": "[concat(parameters('resourcePrefix'), '-function-plan-2')]"
+        "serverfarms_cvkmdemotempappservplanfunc_name": "[concat(parameters('resourcePrefix'), '-function-plan')]"
     },
     "resources": [
         {
             "type": "Microsoft.CognitiveServices/accounts",
             "apiVersion": "2021-10-01",
             "name": "[variables('accounts_cvkmdemotempcogserv_name')]",
-            "location": "uaenorth",
+            "location": "[parameters('location')]",
             "sku": {
                 "name": "S0"
             },
@@ -125,7 +124,7 @@
             "type": "Microsoft.Search/searchServices",
             "apiVersion": "2021-04-01-preview",
             "name": "[variables('searchServices_cvkmdemotempcogserch_name')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "sku": {
                 "name": "basic"
             },
@@ -153,7 +152,7 @@
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2021-06-01",
             "name": "[variables('storageAccounts_cvkmdemotempstr_name')]",
-            "location": "uaenorth",
+            "location": "[parameters('location')]",
             "sku": {
                 "name": "Standard_LRS",
                 "tier": "Standard"
@@ -191,34 +190,8 @@
         {
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2021-02-01",
-            "name": "[variables('serverfarms_cvkmdemotempappservplanfunc1_name')]",
-            "location": "UAE North",
-            "sku": {
-                "name": "Y1",
-                "tier": "Dynamic",
-                "size": "Y1",
-                "family": "Y",
-                "capacity": 0
-            },
-            "kind": "functionapp",
-            "properties": {
-                "perSiteScaling": false,
-                "elasticScaleEnabled": false,
-                "maximumElasticWorkerCount": 1,
-                "isSpot": false,
-                "reserved": true,
-                "isXenon": false,
-                "hyperV": false,
-                "targetWorkerCount": 0,
-                "targetWorkerSizeId": 0,
-                "zoneRedundant": false
-            }
-        },
-        {
-            "type": "Microsoft.Web/serverfarms",
-            "apiVersion": "2021-02-01",
-            "name": "[variables('serverfarms_cvkmdemotempappservplanfunc2_name')]",
-            "location": "UAE North",
+            "name": "[variables('serverfarms_cvkmdemotempappservplanfunc_name')]",
+            "location": "[parameters('location')]",
             "sku": {
                 "name": "Y1",
                 "tier": "Dynamic",
@@ -244,7 +217,7 @@
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2021-02-01",
             "name": "[variables('serverfarms_cvkmdemotempappservplan_name')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "sku": {
                 "name": "B1",
                 "tier": "Basic",
@@ -346,7 +319,7 @@
             "type": "Microsoft.Web/sites",
             "apiVersion": "2021-02-01",
             "name": "[variables('sites_cvkmdemotempappserv_name')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplan_name'))]"
             ],
@@ -395,9 +368,9 @@
             "type": "Microsoft.Web/sites",
             "apiVersion": "2021-02-01",
             "name": "[variables('sites_cvkmdemotempfuncapp1_name')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc1_name'))]"
+                "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc_name'))]"
             ],
             "kind": "functionapp,linux",
             "properties": {
@@ -414,7 +387,7 @@
                         "hostType": "Repository"
                     }
                 ],
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc1_name'))]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc_name'))]",
                 "reserved": true,
                 "isXenon": false,
                 "hyperV": false,
@@ -445,9 +418,9 @@
             "type": "Microsoft.Web/sites",
             "apiVersion": "2021-02-01",
             "name": "[variables('sites_cvkmdemotempfuncapp2_name')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc1_name'))]"
+                "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc_name'))]"
             ],
             "kind": "functionapp,linux",
             "properties": {
@@ -464,7 +437,7 @@
                         "hostType": "Repository"
                     }
                 ],
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc1_name'))]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc_name'))]",
                 "reserved": true,
                 "isXenon": false,
                 "hyperV": false,
@@ -495,7 +468,7 @@
             "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
             "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempappserv_name'), '/ftp')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempappserv_name'))]"
             ],
@@ -507,7 +480,7 @@
             "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
             "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempfuncapp1_name'), '/ftp')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp1_name'))]"
             ],
@@ -519,7 +492,7 @@
             "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
             "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempfuncapp2_name'), '/ftp')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp2_name'))]"
             ],
@@ -531,7 +504,7 @@
             "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
             "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempappserv_name'), '/scm')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempappserv_name'))]"
             ],
@@ -543,7 +516,7 @@
             "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
             "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempfuncapp1_name'), '/scm')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp1_name'))]"
             ],
@@ -555,7 +528,7 @@
             "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
             "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempfuncapp2_name'), '/scm')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp2_name'))]"
             ],
@@ -567,7 +540,7 @@
             "type": "Microsoft.Web/sites/config",
             "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempappserv_name'), '/web')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempappserv_name'))]"
             ],
@@ -646,7 +619,7 @@
             "type": "Microsoft.Web/sites/config",
             "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempfuncapp1_name'), '/web')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp1_name'))]"
             ],
@@ -731,7 +704,7 @@
             "type": "Microsoft.Web/sites/config",
             "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempfuncapp2_name'), '/web')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp2_name'))]"
             ],
@@ -816,7 +789,7 @@
             "type": "Microsoft.Web/sites/hostNameBindings",
             "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempappserv_name'), '/', variables('sites_cvkmdemotempappserv_name'), '.azurewebsites.net')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempappserv_name'))]"
             ],
@@ -829,7 +802,7 @@
             "type": "Microsoft.Web/sites/hostNameBindings",
             "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempfuncapp1_name'), '/', variables('sites_cvkmdemotempfuncapp1_name'), '.azurewebsites.net')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp1_name'))]"
             ],
@@ -842,7 +815,7 @@
             "type": "Microsoft.Web/sites/hostNameBindings",
             "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempfuncapp2_name'), '/', variables('sites_cvkmdemotempfuncapp2_name'), '.azurewebsites.net')]",
-            "location": "UAE North",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp2_name'))]"
             ],
