@@ -37,16 +37,13 @@ The information and isights extracted from the CV documents can be grouped into 
 - Key phrases
 
 ### Web App Interface
-The first interface created to display the extracted insights is a website interface, that can be used to search and filter through the CV documents.
+The main interface created to display the extracted insights is a website interface, that can be used to search and filter through the CV documents.
 
 #### Home Page
 ![Home Page](https://user-images.githubusercontent.com/88718044/139071306-6595000e-a33c-4dca-85eb-ed6c475d66cf.jpeg)
 
 #### Search Results
 ![Search Results](https://user-images.githubusercontent.com/88718044/139071348-131db6aa-f11b-4857-88b4-cbe61bae5fb6.jpeg)
-
-### PowerBI Dashboard
-COMING SOON
 
 ## Deployemnt Process
 Deploying the accelerator can be done in seven simple steps, that cover every aspect from deploying the resources, creating the search service elements, and conecting to the web interface. 
@@ -56,8 +53,8 @@ In order to deploy the accelerator, clone or download this repository, and make 
 - Azure Subscription 
 - Visual Studio 2019 or later
 - VS Code with Azure Functions extension
-- Sample CV documents
-- Postman 
+- Postman
+- Sample CV documents 
 
 ### Step 0: Deploy the resources
 Using the provided ARM template, create all the required Azure resources by clicking on this button: 
@@ -82,10 +79,10 @@ In Postman, import the collection and fill in the global variables with the prop
 | <STORAGE_ACCOUNT_CONTAINER_NAME> | Name of Storage Container |
 | <STORAGE_CONTAINER_FOLDER_NAME> | Name of Storage Folder, only if used, otherwise replace with empty space |
 | <STORAGE_ACCOUNT_CONNECTION_STRING> | Connection String of Storage Account  |
-| <CUSTOM_SKILL_URL_ONE> | Azure Function URL of Text Extraction Skill |
-| <CUSTOM_SKILL_URL_TWO> | Azure Function URL of Years of Experience Skill |
-| <LOOKUP_TABLE_URL_ONE> | Lookup table URL of Qualifications |
-| <LOOKUP_TABLE_URL_TWO> | Lookup table URL of Languages |
+| <CUSTOM_SKILL_URL_ONE> | Azure Function URL of Text Extraction Skill (after Step 3a) |
+| <CUSTOM_SKILL_URL_TWO> | Azure Function URL of Years of Experience Skill (after Step 3a) |
+| <LOOKUP_TABLE_URL_ONE> | Lookup table URL of Qualifications (after Step 3b) |
+| <LOOKUP_TABLE_URL_TWO> | Lookup table URL of Languages (after Step 3b) |
 | <DATASOURCE_NAME> | Name of Datasource |
 | <INDEX_NAME> | Name of Index |
 | <SKILLSET_NAME> | Name of Skillset |
@@ -104,7 +101,7 @@ This process should be done twice to create two functions, one for Text Extracti
 
 In Text Extraction, make sure to add the values for the Cognitive Services Key and Endpoint in the script, and add "requests" in the requirments file.
 
-To deploy the function, you can follow the instructions provided in here: [Develop Azure Functions by using Visual Studio Code](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=python).
+To deploy the function, you can follow the instructions provided in here: [Develop Azure Functions by using Visual Studio Code](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=python), and publish the function to a new Function App.
 
 After deploying both custom skill functions, we can procceed to create the Skillset. 
 
@@ -141,9 +138,6 @@ Navigate to the "appsettings.json" file, and change the values according to the 
 | <CONTAINER_NAME> | Container Name in Storage Account that stores the documents |
 
 You can test the website locally by running the solution in Visual Studio, or publish the website to Azure by following the instructions found here: [Quickstart: Publish an ASP.NET web app](https://docs.microsoft.com/en-US/visualstudio/deployment/quickstart-deploy-aspnet-web-app?view=vs-2019&tabs=azure).
-
-### Step 7: Create the PowerBI Dashboard
-COMING SOON
 
 ## References 
 This accelerator was inspired by the [Knowledge Mining Solution Accelerator](https://github.com/Azure-Samples/azure-search-knowledge-mining).
