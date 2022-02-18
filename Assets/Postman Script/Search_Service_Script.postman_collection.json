@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e8c24205-75b3-4135-9564-a8f4e269c78a",
+		"_postman_id": "0eb3a405-63fa-479f-b5a7-3c65f7a66a23",
 		"name": "Search_Service_Script",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -48,49 +48,6 @@
 			"response": []
 		},
 		{
-			"name": "Create Index",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "api-key",
-						"type": "text",
-						"value": "{{admin-key}}"
-					},
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"{{index-name}}\",\r\n    \"fields\": [\r\n        {\r\n            \"name\": \"metadata_storage_path\",\r\n            \"type\": \"Edm.String\",\r\n            \"key\": true,\r\n            \"searchable\": true,\r\n            \"sortable\": true,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"url\",\r\n            \"type\": \"Edm.String\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"metadata_storage_name\",\r\n            \"type\": \"Edm.String\",\r\n            \"searchable\": true,\r\n            \"sortable\": true,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"size\",\r\n            \"type\": \"Edm.Int64\",\r\n            \"searchable\": false,\r\n            \"sortable\": true,\r\n            \"filterable\": true,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"content\",\r\n            \"type\": \"Edm.String\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"key_phrases\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"Name\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"Location\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": true,\r\n            \"facetable\": true\r\n        },\r\n        {\r\n            \"name\": \"Organization\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": true,\r\n            \"facetable\": true\r\n        },\r\n        {\r\n            \"name\": \"Link\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"Email\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"Skills\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": true,\r\n            \"facetable\": true\r\n        },\r\n        {\r\n            \"name\": \"Phone\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"Qualification\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": true,\r\n            \"facetable\": true\r\n        },\r\n        {\r\n            \"name\": \"Languages\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": true,\r\n            \"facetable\": true\r\n        },\r\n        {\r\n            \"name\": \"Experience\",\r\n            \"type\": \"Edm.String\",\r\n            \"searchable\": true,\r\n            \"sortable\": true,\r\n            \"filterable\": true,\r\n            \"facetable\": true\r\n        }\r\n    ]\r\n}"
-				},
-				"url": {
-					"raw": "https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}?api-version={{api-version}}",
-					"protocol": "https",
-					"host": [
-						"{{search-service-name}}",
-						"search",
-						"windows",
-						"net"
-					],
-					"path": [
-						"indexes",
-						"{{index-name}}"
-					],
-					"query": [
-						{
-							"key": "api-version",
-							"value": "{{api-version}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Create Skillset",
 			"request": {
 				"method": "PUT",
@@ -123,6 +80,49 @@
 					"path": [
 						"skillsets",
 						"{{skillset-name}}"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "{{api-version}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Index",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "api-key",
+						"type": "text",
+						"value": "{{admin-key}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{index-name}}\",\r\n    \"fields\": [\r\n        {\r\n            \"name\": \"metadata_storage_path\",\r\n            \"type\": \"Edm.String\",\r\n            \"key\": true,\r\n            \"searchable\": true,\r\n            \"sortable\": true,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"url\",\r\n            \"type\": \"Edm.String\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"metadata_storage_name\",\r\n            \"type\": \"Edm.String\",\r\n            \"searchable\": true,\r\n            \"sortable\": true,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"size\",\r\n            \"type\": \"Edm.Int64\",\r\n            \"searchable\": false,\r\n            \"sortable\": true,\r\n            \"filterable\": true,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"content\",\r\n            \"type\": \"Edm.String\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"key_phrases\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"Name\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"Location\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": true,\r\n            \"facetable\": true\r\n        },\r\n        {\r\n            \"name\": \"Organization\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": true,\r\n            \"facetable\": true\r\n        },\r\n        {\r\n            \"name\": \"Link\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"Email\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"Skills\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": true,\r\n            \"facetable\": true\r\n        },\r\n        {\r\n            \"name\": \"Phone\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": false,\r\n            \"facetable\": false\r\n        },\r\n        {\r\n            \"name\": \"Qualification\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": true,\r\n            \"facetable\": true\r\n        },\r\n        {\r\n            \"name\": \"Languages\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"sortable\": false,\r\n            \"filterable\": true,\r\n            \"facetable\": true\r\n        },\r\n        {\r\n            \"name\": \"Experience\",\r\n            \"type\": \"Edm.String\",\r\n            \"searchable\": true,\r\n            \"sortable\": true,\r\n            \"filterable\": true,\r\n            \"facetable\": true\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}?api-version={{api-version}}",
+					"protocol": "https",
+					"host": [
+						"{{search-service-name}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{index-name}}"
 					],
 					"query": [
 						{

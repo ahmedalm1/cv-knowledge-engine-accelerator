@@ -437,7 +437,7 @@ namespace CognitiveSearch.UI
                     Protocol = SasProtocol.HttpsAndHttp,
                     BlobContainerName = container.Name,
                     Resource = "c",
-                    StartsOn = DateTimeOffset.Parse("01/01/2021"),
+                    StartsOn = DateTimeOffset.Parse("01/01/2022"),
                     //StartsOn = DateTimeOffset.UtcNow,
                     ExpiresOn = DateTimeOffset.UtcNow.AddHours(24),
                     IPRange = new SasIPRange(IPAddress.None, IPAddress.None)

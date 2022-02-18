@@ -16,8 +16,9 @@ namespace CognitiveSearch.UI
             //"organizations",
             //"keyphrases"
             
-            "Jobs",
-            "Degrees",
+            "Location",
+            "Qualification",
+            "Organization",
             "Languages",
             "Experience"
         };
@@ -30,13 +31,13 @@ namespace CognitiveSearch.UI
             //"organizations",
             //"keyphrases",
             
-            "Skills"
+            "key_phrases"
         };
 
         private string[] resultFields = new string[]
         {
             "metadata_storage_name",
-            "metadata_storage_path"
+            "metadata_storage_path",
 
             // Add fields needed to display results cards
 
@@ -48,9 +49,9 @@ namespace CognitiveSearch.UI
             //"keyPhrases",
             //"geoLocation"
             
-            //"Names", // Person name
-            //"Emails", // Email address
-            //"Urls" // LinkedIn link
+            "Name",
+            "Email",
+            "Phone"
         };
 
         public List<SearchField> Facets { get; set; }

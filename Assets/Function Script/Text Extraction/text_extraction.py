@@ -46,7 +46,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                     'Ocp-Apim-Subscription-Key': form_recognizer_key,
                 }
 
-                url = form_recognizer_url + "/formrecognizer/v2.1-preview.2/layout/analyze?language=en"
+                url = form_recognizer_url + "formrecognizer/v2.1-preview.2/layout/analyze?language=en"
 
                 resp = http_post(url = url, data = document_content, headers = headers)
                 

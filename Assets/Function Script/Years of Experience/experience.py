@@ -11,7 +11,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     }
     statuscode = 200
 
-    years = ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
+    # Accepted values for Years of Experience
+    years = ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"]
 
     try:
         values = req.get_json().get('values')
@@ -33,27 +34,25 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 
                 # Find years
                 text = ' '.join(y for y in text.split() if y in years)
-                print(text)
 
                 text = text.split() # Seperate years
-                print(text)
                 text = set(text)    # Remove duplicates
-                print(text)
                 text = list(text)   # Convert to list
-                print(text)
                 text.sort()         # Sort list ascending 
-                print(text)
 
                 # Get Years of Experience 
                 temp_len = len(text)
-                yoe_low = int(text[0])
-                yoe_high = int(text[temp_len-1])
-                YearsOfExp = yoe_high - yoe_low
-
-                if YearsOfExp == 1:
-                    text = f"{YearsOfExp} year"
+                if temp_len != 0:
+                    yoe_low = int(text[0])
+                    yoe_high = int(text[temp_len-1])
+                    YearsOfExp = yoe_high - yoe_low
                 else:
-                    text = f"{YearsOfExp} years" 
+                    YearsOfExp = None
+
+                if YearsOfExp is None:
+                    text = "Not Available"
+                else:
+                    text = f"{YearsOfExp} year(s)"
 
                 # Store the cleaned text
                 val["data"]["text"] = text
