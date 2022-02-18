@@ -41,7 +41,7 @@
             ],
             "type": "String",
             "metadata": {
-                "description": "App Service Plan tier"
+                "description": "App Service Plan tier for the App Service"
             }
         },
         "searchServiceSku": { 
@@ -92,13 +92,10 @@
     },
     "variables": {
         "sites_cvkmdemotempappserv_name": "[concat(parameters('resourcePrefix'), '-site')]",
-        "serverfarms_cvkmdemotempappservplan_name": "[concat(parameters('resourcePrefix'), '-plan')]",
+        "serverfarms_cvkmdemotempappservplan_name": "[concat('ASP-', parameters('resourcePrefix'))]",
         "storageAccounts_cvkmdemotempstr_name": "[concat(parameters('resourcePrefix'), 'str')]",
         "searchServices_cvkmdemotempcogserch_name": "[concat(parameters('resourcePrefix'), '-search-service')]",
-        "accounts_cvkmdemotempcogserv_name": "[concat(parameters('resourcePrefix'), '-cognitive-services')]",
-        "sites_cvkmdemotempfuncapp1_name": "[concat(parameters('resourcePrefix'), '-function-1')]",
-        "sites_cvkmdemotempfuncapp2_name": "[concat(parameters('resourcePrefix'), '-function-2')]",
-        "serverfarms_cvkmdemotempappservplanfunc_name": "[concat(parameters('resourcePrefix'), '-function-plan')]"
+        "accounts_cvkmdemotempcogserv_name": "[concat(parameters('resourcePrefix'), '-cognitive-services')]"
     },
     "resources": [
         {
@@ -184,28 +181,6 @@
                     "keySource": "Microsoft.Storage"
                 },
                 "accessTier": "Hot"
-            }
-        },
-        {
-            "type": "Microsoft.Web/serverfarms",
-            "apiVersion": "2021-02-01",
-            "name": "[variables('serverfarms_cvkmdemotempappservplanfunc_name')]",
-            "location": "[parameters('location')]",
-            "sku": {
-                "name": "[parameters('hostingPlanSku')]"
-            },
-            "kind": "functionapp",
-            "properties": {
-                "perSiteScaling": false,
-                "elasticScaleEnabled": false,
-                "maximumElasticWorkerCount": 1,
-                "isSpot": false,
-                "reserved": true,
-                "isXenon": false,
-                "hyperV": false,
-                "targetWorkerCount": 0,
-                "targetWorkerSizeId": 0,
-                "zoneRedundant": false
             }
         },
         {
@@ -356,106 +331,6 @@
             }
         },
         {
-            "type": "Microsoft.Web/sites",
-            "apiVersion": "2021-02-01",
-            "name": "[variables('sites_cvkmdemotempfuncapp1_name')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc_name'))]"
-            ],
-            "kind": "functionapp,linux",
-            "properties": {
-                "enabled": true,
-                "hostNameSslStates": [
-                    {
-                        "name": "[concat(variables('sites_cvkmdemotempfuncapp1_name'), '.azurewebsites.net')]",
-                        "sslState": "Disabled",
-                        "hostType": "Standard"
-                    },
-                    {
-                        "name": "[concat(variables('sites_cvkmdemotempfuncapp1_name'), '.scm.azurewebsites.net')]",
-                        "sslState": "Disabled",
-                        "hostType": "Repository"
-                    }
-                ],
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc_name'))]",
-                "reserved": true,
-                "isXenon": false,
-                "hyperV": false,
-                "siteConfig": {
-                    "numberOfWorkers": 1,
-                    "linuxFxVersion": "Python|3.9",
-                    "acrUseManagedIdentityCreds": false,
-                    "alwaysOn": false,
-                    "http20Enabled": false,
-                    "functionAppScaleLimit": 200,
-                    "minimumElasticInstanceCount": 0
-                },
-                "scmSiteAlsoStopped": false,
-                "clientAffinityEnabled": false,
-                "clientCertEnabled": false,
-                "clientCertMode": "Required",
-                "hostNamesDisabled": false,
-                "customDomainVerificationId": "4D973B1A4FFF6D14A2603155D12163CBC069DCFFAF174946B100C28ACD870844",
-                "containerSize": 1536,
-                "dailyMemoryTimeQuota": 0,
-                "httpsOnly": false,
-                "redundancyMode": "None",
-                "storageAccountRequired": false,
-                "keyVaultReferenceIdentity": "SystemAssigned"
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites",
-            "apiVersion": "2021-02-01",
-            "name": "[variables('sites_cvkmdemotempfuncapp2_name')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc_name'))]"
-            ],
-            "kind": "functionapp,linux",
-            "properties": {
-                "enabled": true,
-                "hostNameSslStates": [
-                    {
-                        "name": "[concat(variables('sites_cvkmdemotempfuncapp2_name'), '.azurewebsites.net')]",
-                        "sslState": "Disabled",
-                        "hostType": "Standard"
-                    },
-                    {
-                        "name": "[concat(variables('sites_cvkmdemotempfuncapp2_name'), '.scm.azurewebsites.net')]",
-                        "sslState": "Disabled",
-                        "hostType": "Repository"
-                    }
-                ],
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverfarms_cvkmdemotempappservplanfunc_name'))]",
-                "reserved": true,
-                "isXenon": false,
-                "hyperV": false,
-                "siteConfig": {
-                    "numberOfWorkers": 1,
-                    "linuxFxVersion": "Python|3.9",
-                    "acrUseManagedIdentityCreds": false,
-                    "alwaysOn": false,
-                    "http20Enabled": false,
-                    "functionAppScaleLimit": 200,
-                    "minimumElasticInstanceCount": 0
-                },
-                "scmSiteAlsoStopped": false,
-                "clientAffinityEnabled": false,
-                "clientCertEnabled": false,
-                "clientCertMode": "Required",
-                "hostNamesDisabled": false,
-                "customDomainVerificationId": "4D973B1A4FFF6D14A2603155D12163CBC069DCFFAF174946B100C28ACD870844",
-                "containerSize": 1536,
-                "dailyMemoryTimeQuota": 0,
-                "httpsOnly": false,
-                "redundancyMode": "None",
-                "storageAccountRequired": false,
-                "keyVaultReferenceIdentity": "SystemAssigned"
-            }
-        },
-        {
             "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
             "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempappserv_name'), '/ftp')]",
@@ -470,58 +345,10 @@
         {
             "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
             "apiVersion": "2021-02-01",
-            "name": "[concat(variables('sites_cvkmdemotempfuncapp1_name'), '/ftp')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp1_name'))]"
-            ],
-            "properties": {
-                "allow": true
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
-            "apiVersion": "2021-02-01",
-            "name": "[concat(variables('sites_cvkmdemotempfuncapp2_name'), '/ftp')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp2_name'))]"
-            ],
-            "properties": {
-                "allow": true
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
-            "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempappserv_name'), '/scm')]",
             "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempappserv_name'))]"
-            ],
-            "properties": {
-                "allow": true
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
-            "apiVersion": "2021-02-01",
-            "name": "[concat(variables('sites_cvkmdemotempfuncapp1_name'), '/scm')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp1_name'))]"
-            ],
-            "properties": {
-                "allow": true
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
-            "apiVersion": "2021-02-01",
-            "name": "[concat(variables('sites_cvkmdemotempfuncapp2_name'), '/scm')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp2_name'))]"
             ],
             "properties": {
                 "allow": true
@@ -607,176 +434,6 @@
             }
         },
         {
-            "type": "Microsoft.Web/sites/config",
-            "apiVersion": "2021-02-01",
-            "name": "[concat(variables('sites_cvkmdemotempfuncapp1_name'), '/web')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp1_name'))]"
-            ],
-            "properties": {
-                "numberOfWorkers": 1,
-                "defaultDocuments": [
-                    "Default.htm",
-                    "Default.html",
-                    "Default.asp",
-                    "index.htm",
-                    "index.html",
-                    "iisstart.htm",
-                    "default.aspx",
-                    "index.php"
-                ],
-                "netFrameworkVersion": "v4.0",
-                "linuxFxVersion": "Python|3.9",
-                "requestTracingEnabled": false,
-                "remoteDebuggingEnabled": false,
-                "httpLoggingEnabled": false,
-                "acrUseManagedIdentityCreds": false,
-                "logsDirectorySizeLimit": 35,
-                "detailedErrorLoggingEnabled": false,
-                "publishingUsername": "$cvkmdemotempfuncapp",
-                "scmType": "None",
-                "use32BitWorkerProcess": false,
-                "webSocketsEnabled": false,
-                "alwaysOn": false,
-                "managedPipelineMode": "Integrated",
-                "virtualApplications": [
-                    {
-                        "virtualPath": "/",
-                        "physicalPath": "site\\wwwroot",
-                        "preloadEnabled": false
-                    }
-                ],
-                "loadBalancing": "LeastRequests",
-                "experiments": {
-                    "rampUpRules": []
-                },
-                "autoHealEnabled": false,
-                "vnetRouteAllEnabled": false,
-                "vnetPrivatePortsCount": 0,
-                "cors": {
-                    "allowedOrigins": [
-                        "https://ms.portal.azure.com"
-                    ],
-                    "supportCredentials": false
-                },
-                "localMySqlEnabled": false,
-                "ipSecurityRestrictions": [
-                    {
-                        "ipAddress": "Any",
-                        "action": "Allow",
-                        "priority": 1,
-                        "name": "Allow all",
-                        "description": "Allow all access"
-                    }
-                ],
-                "scmIpSecurityRestrictions": [
-                    {
-                        "ipAddress": "Any",
-                        "action": "Allow",
-                        "priority": 1,
-                        "name": "Allow all",
-                        "description": "Allow all access"
-                    }
-                ],
-                "scmIpSecurityRestrictionsUseMain": false,
-                "http20Enabled": false,
-                "minTlsVersion": "1.2",
-                "scmMinTlsVersion": "1.0",
-                "ftpsState": "AllAllowed",
-                "preWarmedInstanceCount": 0,
-                "functionAppScaleLimit": 200,
-                "functionsRuntimeScaleMonitoringEnabled": false,
-                "minimumElasticInstanceCount": 0,
-                "azureStorageAccounts": {}
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/config",
-            "apiVersion": "2021-02-01",
-            "name": "[concat(variables('sites_cvkmdemotempfuncapp2_name'), '/web')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp2_name'))]"
-            ],
-            "properties": {
-                "numberOfWorkers": 1,
-                "defaultDocuments": [
-                    "Default.htm",
-                    "Default.html",
-                    "Default.asp",
-                    "index.htm",
-                    "index.html",
-                    "iisstart.htm",
-                    "default.aspx",
-                    "index.php"
-                ],
-                "netFrameworkVersion": "v4.0",
-                "linuxFxVersion": "Python|3.9",
-                "requestTracingEnabled": false,
-                "remoteDebuggingEnabled": false,
-                "httpLoggingEnabled": false,
-                "acrUseManagedIdentityCreds": false,
-                "logsDirectorySizeLimit": 35,
-                "detailedErrorLoggingEnabled": false,
-                "publishingUsername": "$cvkmdemotempfuncapp",
-                "scmType": "None",
-                "use32BitWorkerProcess": false,
-                "webSocketsEnabled": false,
-                "alwaysOn": false,
-                "managedPipelineMode": "Integrated",
-                "virtualApplications": [
-                    {
-                        "virtualPath": "/",
-                        "physicalPath": "site\\wwwroot",
-                        "preloadEnabled": false
-                    }
-                ],
-                "loadBalancing": "LeastRequests",
-                "experiments": {
-                    "rampUpRules": []
-                },
-                "autoHealEnabled": false,
-                "vnetRouteAllEnabled": false,
-                "vnetPrivatePortsCount": 0,
-                "cors": {
-                    "allowedOrigins": [
-                        "https://ms.portal.azure.com"
-                    ],
-                    "supportCredentials": false
-                },
-                "localMySqlEnabled": false,
-                "ipSecurityRestrictions": [
-                    {
-                        "ipAddress": "Any",
-                        "action": "Allow",
-                        "priority": 1,
-                        "name": "Allow all",
-                        "description": "Allow all access"
-                    }
-                ],
-                "scmIpSecurityRestrictions": [
-                    {
-                        "ipAddress": "Any",
-                        "action": "Allow",
-                        "priority": 1,
-                        "name": "Allow all",
-                        "description": "Allow all access"
-                    }
-                ],
-                "scmIpSecurityRestrictionsUseMain": false,
-                "http20Enabled": false,
-                "minTlsVersion": "1.2",
-                "scmMinTlsVersion": "1.0",
-                "ftpsState": "AllAllowed",
-                "preWarmedInstanceCount": 0,
-                "functionAppScaleLimit": 200,
-                "functionsRuntimeScaleMonitoringEnabled": false,
-                "minimumElasticInstanceCount": 0,
-                "azureStorageAccounts": {}
-            }
-        },
-        {
             "type": "Microsoft.Web/sites/hostNameBindings",
             "apiVersion": "2021-02-01",
             "name": "[concat(variables('sites_cvkmdemotempappserv_name'), '/', variables('sites_cvkmdemotempappserv_name'), '.azurewebsites.net')]",
@@ -786,32 +443,6 @@
             ],
             "properties": {
                 "siteName": "cvkmdemotempappserv",
-                "hostNameType": "Verified"
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/hostNameBindings",
-            "apiVersion": "2021-02-01",
-            "name": "[concat(variables('sites_cvkmdemotempfuncapp1_name'), '/', variables('sites_cvkmdemotempfuncapp1_name'), '.azurewebsites.net')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp1_name'))]"
-            ],
-            "properties": {
-                "siteName": "cvkmdemotempfuncapp",
-                "hostNameType": "Verified"
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites/hostNameBindings",
-            "apiVersion": "2021-02-01",
-            "name": "[concat(variables('sites_cvkmdemotempfuncapp2_name'), '/', variables('sites_cvkmdemotempfuncapp2_name'), '.azurewebsites.net')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', variables('sites_cvkmdemotempfuncapp2_name'))]"
-            ],
-            "properties": {
-                "siteName": "cvkmdemotempfuncapp",
                 "hostNameType": "Verified"
             }
         },
