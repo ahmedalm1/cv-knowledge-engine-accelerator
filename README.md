@@ -3,6 +3,11 @@
 ## About this accelerator
 The CV Knowledge Engine solution accelerator aims to provides a quick way of creating an intelligent search engine, that enables searching and filtering through CV and resume documents. It leverages Knowledge Mining and Cognitive Services technologies, to extract all the valuable information and insights from the CV documents, like names, contact information, years of experience, skills and qualifications, ..etc. It also creates an intuitive, easy-to-navigate user interface, that allows for a full search experience with capabilities like searching with search terms, customized filters, and informative result cards. Moreover, the extracted information can also be exported to Power BI and used to create informative dashboards, to give a high level overview of the information extracted. 
 
+> #### Note
+> 
+> This is an older version of the CV Knowledge Engine Solution Accelerator.
+> You can find the newest version here ([CV Knowledge Engine Solution Accelerator V2](https://github.com/ahmedalm1/cv-knowledge-engine-accelerator-v2))
+
 ### Business Use Case 
 The process of screening and searching through CV documents submitted by job seekers is a long and costly process, where the recruiters teams usually have to go through each submitted CV manually, to find the best candidates suited for the job opening. This accelerator will help extract all the essential information from CVs and resumes and simplify the process of searching and filtering through applicants, which will significantly reduce costs and time to isights. 
 
